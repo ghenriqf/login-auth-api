@@ -9,6 +9,7 @@ import com.ghenriqf.login_auth_api.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthController(UserRepository userRepository) {
+    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping
@@ -33,7 +36,7 @@ public class AuthController {
         User user = new User();
         user.setName(registerUserRequest.name());
         user.setName(registerUserRequest.name());
-        user.setPassword(registerUserRequest.password());
+        user.setPassword(passwordEncoder.encode(registerUserRequest.password()));
 
         userRepository.save(user);
 
