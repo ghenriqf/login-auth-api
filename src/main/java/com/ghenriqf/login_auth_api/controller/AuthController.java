@@ -1,6 +1,7 @@
-package com.ghenriqf.login_auth_api.domain.user;
+package com.ghenriqf.login_auth_api.controller;
 
 
+import com.ghenriqf.login_auth_api.domain.user.User;
 import com.ghenriqf.login_auth_api.dto.request.LoginUserRequest;
 import com.ghenriqf.login_auth_api.dto.request.RegisterUserRequest;
 import com.ghenriqf.login_auth_api.dto.response.LoginUserResponse;
@@ -9,6 +10,7 @@ import com.ghenriqf.login_auth_api.repository.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,14 +20,17 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
 
-    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.authenticationManager = authenticationManager;
     }
 
     @PostMapping
     public ResponseEntity<LoginUserResponse> login(@Valid @RequestBody LoginUserRequest loginUserRequest) {
+
         return null;
     }
 
