@@ -2,7 +2,6 @@ package com.ghenriqf.login_auth_api.domain.user;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +17,7 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "users")
+// UserDetails é utilizada para identificar uma classe que represente um usuário que vai ser autenticado na aplicação
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
