@@ -30,7 +30,7 @@ public class AuthController {
         this.authenticationManager = authenticationManager;
     }
 
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<LoginUserResponse> login(@Valid @RequestBody LoginUserRequest loginUserRequest) {
 
         UsernamePasswordAuthenticationToken userAndPass = new UsernamePasswordAuthenticationToken(loginUserRequest.email(),loginUserRequest.password());
@@ -40,7 +40,7 @@ public class AuthController {
         return null;
     }
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<RegisterUserResponse> register(
             @Valid @RequestBody RegisterUserRequest registerUserRequest
     ) {
