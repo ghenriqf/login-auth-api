@@ -28,7 +28,7 @@ public class TokenService {
                     .withExpiresAt(this.generateExpirationDate()) // Define quando o token expira
                     .sign(algorithm); // Assina o token com o algoritmo HMAC256 e a chave secreta
         } catch (JWTCreationException exception) {
-            throw new RuntimeException("Erro na autentição");
+            throw new RuntimeException("Erro na autenticação");
         }
     }
 
@@ -46,6 +46,6 @@ public class TokenService {
     }
 
     private Instant generateExpirationDate() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+        return Instant.now().plusSeconds(7200);
     }
 }

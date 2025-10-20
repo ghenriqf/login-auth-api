@@ -1,6 +1,5 @@
 package com.ghenriqf.login_auth_api.service;
 
-
 import com.ghenriqf.login_auth_api.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +14,6 @@ public class AuthorizationService implements UserDetailsService {
     public AuthorizationService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
