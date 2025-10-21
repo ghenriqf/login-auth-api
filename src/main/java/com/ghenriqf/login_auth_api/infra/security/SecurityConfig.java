@@ -21,6 +21,7 @@ public class SecurityConfig { // configuração de segurança do Spring Security
     // cadeia de filtros que o Spring Security vai aplicar em cada requisição HTTP.
     public SecurityFilterChain securityFilterChain (HttpSecurity http ) throws Exception {
         return http
+
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configure(http))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
