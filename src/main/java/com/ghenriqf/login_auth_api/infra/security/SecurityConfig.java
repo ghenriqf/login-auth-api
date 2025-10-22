@@ -28,11 +28,10 @@ public class SecurityConfig { // configuração de segurança do Spring Security
     // cadeia de filtros que o Spring Security vai aplicar em cada requisição HTTP.
     public SecurityFilterChain securityFilterChain (HttpSecurity http ) throws Exception {
         return http
-
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors.configure(http))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize
+                .csrf(csrf -> csrf.disable()) // Desativa o CSRF (Cross-Site Request Forgery).
+                .cors(cors -> cors.configure(http)) // Configura o CORS (Cross-Origin Resource Sharing), permitindo que clientes em outros domínios possam acessar a API.
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Define que a aplicação é stateless, ou seja, não usa sessão.
+                .authorizeHttpRequests(authorize -> authorize // Define quem pode acessar cada endpoint:
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
@@ -41,11 +40,13 @@ public class SecurityConfig { // configuração de segurança do Spring Security
                 .build(); // gera o SecurityFilterChain, que é a cadeia de filtros de segurança usada em cada requisição
     }
 
+    // Cria o AuthenticationManager, que é o responsável por validar usuário e senha no login.
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    // Cria um codificador de senha (BCrypt) para armazenar e comparar senhas criptografadas.
     @Bean
     public PasswordEncoder passwordEncoder () {
         return new BCryptPasswordEncoder();
