@@ -17,7 +17,7 @@ API REST desenvolvida com **Spring Boot** para autenticação e controle de aces
 - **Spring Security**  
 - **JWT (JSON Web Token)**  
 - **Maven**  
-- **Banco de Dados Relacional** (MySQL, PostgreSQL ou outro configurado)  
+- **Banco de Dados Relacional** PostgreSQL
 
 ---
 
@@ -27,6 +27,5 @@ API REST desenvolvida com **Spring Boot** para autenticação e controle de aces
 - Login e autenticação de usuários (`/api/auth/login`)  
 - Geração e validação de tokens JWT  
 - Proteção de rotas com autenticação  
-- Suporte a roles e permissões (personalizável)  
 
 ---
