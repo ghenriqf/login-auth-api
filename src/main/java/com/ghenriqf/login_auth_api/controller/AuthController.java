@@ -36,11 +36,23 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginUserResponse> login(@Valid @RequestBody LoginUserRequest loginUserRequest) {
 
-        UsernamePasswordAuthenticationToken userAndPass = new UsernamePasswordAuthenticationToken(loginUserRequest.email(),loginUserRequest.password());
+        // Cria um objeto de autenticação com o e-mail e a senha informados
+        UsernamePasswordAuthenticationToken userAndPass =
+                new UsernamePasswordAuthenticationToken(
+                        loginUserRequest.email(),
+                        loginUserRequest.password()
+                );
+
+        // Envia para o AuthenticationManager, que valida as credenciais
         Authentication authentication = authenticationManager.authenticate(userAndPass);
 
+        // Obtém o usuário autenticado retornado pelo Spring Security
         User user = (User) authentication.getPrincipal();
+
+        // Gera um token JWT contendo as informações do usuário
         String token = tokenService.generateToken(user);
+
+        // Retorna o token JWT na resposta
 
         return ResponseEntity.ok(new LoginUserResponse(token));
     }
@@ -48,9 +60,12 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<RegisterUserResponse> register(@Valid @RequestBody RegisterUserRequest registerUserRequest) {
 
+        // Cria um novo usuário com os dados do request
         User user = new User();
         user.setName(registerUserRequest.name());
         user.setEmail(registerUserRequest.email());
+
+        // Armazena a senha de forma Criptografada
         user.setPassword(passwordEncoder.encode(registerUserRequest.password()));
 
         userRepository.save(user);
