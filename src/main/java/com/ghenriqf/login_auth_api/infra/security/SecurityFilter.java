@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @Component
+// OncePerRequestFilter garante que o filtro será executado uma vez por requisição HTTP
 public class SecurityFilter extends OncePerRequestFilter {
 
     private final TokenService tokenService;
@@ -24,16 +25,24 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        // Authorization: Bearer <token>
         String authorizeHeader = request.getHeader("Authorization");
 
+        // Verifica se o token existe e tem o prefixo correto
         if (Strings.isNotEmpty(authorizeHeader) && authorizeHeader.startsWith("Bearer ")) {
             String token = authorizeHeader.substring("Bearer ".length());
             Optional<JWTUserData> optUser = tokenService.validateToken(token);
 
             if (optUser.isPresent()) {
                 JWTUserData userData = optUser.get();
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userData, null, null);
+                // usuário autenticado
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(userData, null, null);
+
+                // Coloca esse token no SecurityContextHolder, que é onde o Spring guarda o usuário logado durante a requisição.
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                // Continua as cadeias de filtros
             }
             filterChain.doFilter(request,response);
         } else {
