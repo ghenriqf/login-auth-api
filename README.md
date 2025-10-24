@@ -39,8 +39,8 @@ git clone https://github.com/ghenriqf/login-auth-api.git
 
 ## Funcionalidades
 
-- Registro de novos usuários (`/api/auth/register`)  
-- Login e autenticação de usuários (`/api/auth/login`)  
+- Registro de novos usuários (`/auth/register`)  
+- Login e autenticação de usuários (`/auth/login`)  
 - Geração e validação de tokens JWT  
 - Proteção de rotas com autenticação  
 
