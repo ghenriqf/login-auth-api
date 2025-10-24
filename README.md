@@ -1,12 +1,11 @@
 # Spring Boot API Login & Auth
 
-[![Java](https://img.shields.io/badge/Java-17-blue)](https://www.java.com/)  
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.3.0-brightgreen)](https://spring.io/projects/spring-boot)  
-[![Spring Security](https://img.shields.io/badge/Spring%20Security-6.3.0-lightgrey)](https://spring.io/projects/spring-security)  
-[![JWT](https://img.shields.io/badge/JWT-Authentication-orange)](https://jwt.io/)  
-[![Maven](https://img.shields.io/badge/Maven-4.0.0-red)](https://maven.apache.org/)  
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 
-API REST desenvolvida com **Spring Boot** para autenticação e controle de acesso de usuários, utilizando **Spring Security** e **JWT (JSON Web Token)**.  
+API REST desenvolvida com **Spring Boot** para autenticação e controle de acesso de usuários, utilizando **Spring Security** e **JWT**.  
 
 ---
 
@@ -21,6 +20,23 @@ API REST desenvolvida com **Spring Boot** para autenticação e controle de aces
 
 ---
 
+## Como Executar o Projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/ghenriqf/login-auth-api.git
+```
+
+### 2. Instalar dependências com Maven
+
+### 3. Rodar o projeto
+
+1. Inicie a aplicação com Maven
+2. A API estará acessível em http://localhost:8080
+
+---
+
 ## Funcionalidades
 
 - Registro de novos usuários (`/api/auth/register`)  
@@ -29,3 +45,13 @@ API REST desenvolvida com **Spring Boot** para autenticação e controle de aces
 - Proteção de rotas com autenticação  
 
 ---
+
+## API Endpoints
+
+```markdown
+GET /teste - Endpoint para teste de segurança
+
+POST /auth/login - Login para User
+
+POST /auth/register - Registro de um novo User
+```
