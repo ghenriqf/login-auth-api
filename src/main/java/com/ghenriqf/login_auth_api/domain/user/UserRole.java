@@ -1,8 +1,8 @@
 package com.ghenriqf.login_auth_api.domain.user;
 
 public enum UserRole {
-    ADMIN("admin"),
-    USER("user");
+    ROLE_ADMIN("admin"),
+    ROLE_USER("user");
 
     private final String role;
 

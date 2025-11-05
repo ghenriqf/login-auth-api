@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
-public class UserRoleController {
+@RequestMapping("/teste")
+public class TesteController {
     @GetMapping
     public String teste() {
         return "Teste de segurança bem sucedido";

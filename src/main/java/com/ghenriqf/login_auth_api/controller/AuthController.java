@@ -2,6 +2,7 @@ package com.ghenriqf.login_auth_api.controller;
 
 
 import com.ghenriqf.login_auth_api.domain.user.User;
+import com.ghenriqf.login_auth_api.domain.user.UserRole;
 import com.ghenriqf.login_auth_api.dto.request.LoginUserRequest;
 import com.ghenriqf.login_auth_api.dto.request.RegisterUserRequest;
 import com.ghenriqf.login_auth_api.dto.response.LoginUserResponse;
@@ -16,6 +17,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("/auth")
@@ -62,8 +65,15 @@ public class AuthController {
 
         // Cria um novo usuário com os dados do request
         User user = new User();
+
         user.setName(registerUserRequest.name());
         user.setEmail(registerUserRequest.email());
+
+        if (registerUserRequest.role() != null) {
+            user.setRoles(Set.of(registerUserRequest.role()));
+        } else {
+            user.setRoles(Set.of(UserRole.ROLE_USER));
+        }
 
         // Armazena a senha de forma Criptografada
         user.setPassword(passwordEncoder.encode(registerUserRequest.password()));

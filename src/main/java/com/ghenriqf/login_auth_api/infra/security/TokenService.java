@@ -24,6 +24,7 @@ public class TokenService {
 
         return JWT.create()
                 .withClaim("userId", user.getId().toString()) // informações personalizadas chamadas claims
+                .withClaim("roles", user.getRoles().stream().map(Enum::name).toList())
                 .withSubject(user.getEmail()) // Define o subject (sub) do token campo padrão do JWT.
                 .withIssuedAt(Instant.now()) // Define a data de emissão do token
                 .withExpiresAt(generateExpirationDate()) // Define a data de expiração do token
@@ -56,6 +57,7 @@ public class TokenService {
             return Optional.of(JWTUserData.builder()
                     .userId(UUID.fromString(decode.getClaim("userId").asString()))
                     .email(decode.getSubject())
+                    .roles(decode.getClaim("roles").asList(String.class))
                     .build());
         } catch (JWTVerificationException e) {
             return Optional.empty();
