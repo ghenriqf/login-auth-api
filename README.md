@@ -25,6 +25,7 @@ O sistema implementa cadastro, login e controle de acesso baseado em **roles (US
 
 ## Estrutura do Projeto
 
+```
 src/
 └── main/java/com/ghenriqf/login_auth_api
     ├── controller/        # Controladores REST (Auth, Admin, User, Teste)
@@ -33,6 +34,7 @@ src/
     ├── infra/security/    # Configuração de segurança e geração/validação de tokens
     ├── repository/        # Acesso ao banco de dados (UserRepository)
     └── service/           # Camada de autenticação
+```
 
 -------------------------------------------------------------------
 
